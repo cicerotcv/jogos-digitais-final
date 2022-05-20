@@ -1,2 +1,2 @@
 # ParkourKing
-Versão do Unity: 2020.3.30f1
+Versão do Unity usada: 2020.3.30f1
