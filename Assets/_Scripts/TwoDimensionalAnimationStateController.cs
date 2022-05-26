@@ -12,6 +12,8 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
 
     int VelocityZHash;
 
+    int IsJumpingHash;
+
     [Header("Threshold Parameters")]
     public float maxWalkVelocity = 0.5f;
 
@@ -30,6 +32,7 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
         animator = GetComponent<Animator>();
         VelocityXHash = Animator.StringToHash("Velocity X");
         VelocityZHash = Animator.StringToHash("Velocity Z");
+        IsJumpingHash = Animator.StringToHash("Is Jumping");
     }
 
     // Update is called once per frame
@@ -40,6 +43,7 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
         bool leftPressed = Input.GetKey(KeyCode.A);
         bool rightPressed = Input.GetKey(KeyCode.D);
         bool runPressed = Input.GetKey(KeyCode.LeftShift);
+        bool jumpPressed = Input.GetKey(KeyCode.Space);
 
         float currentMaxVelocity =
             runPressed ? maxRunVelocity : maxWalkVelocity;
@@ -59,16 +63,9 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
 
         animator.SetFloat (VelocityXHash, velocityX);
         animator.SetFloat (VelocityZHash, velocityZ);
+        animator.SetBool (IsJumpingHash, jumpPressed);
     }
 
-    // void LockOrResetMovementZ(
-    //     float currentMaxVelocity,
-    //     bool runPressed,
-    //     bool backwardPressed,
-    //     bool forwardPressed
-    // )
-    // {
-    // }
     void HandleMovementZ(
         float currentMaxVelocity,
         bool runPressed,
