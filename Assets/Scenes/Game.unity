@@ -2008,7 +2008,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1378806509
+--- !u!114 &1378806510
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2017,9 +2017,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1378806506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90d27d0846f58d044851532507314771, type: 3}
+  m_Script: {fileID: 11500000, guid: b77bf2f8c9db53948ad9dbe2dc742cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxWalkVelocity: 0.5
+  maxRunVelocity: 2
+  tolerance: 0.05
+  acceleration: 2
+  deceleration: 4
 --- !u!1 &1490737081
 GameObject:
   m_ObjectHideFlags: 0

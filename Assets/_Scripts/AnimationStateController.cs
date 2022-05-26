@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationStateController : MonoBehaviour
@@ -10,12 +8,19 @@ public class AnimationStateController : MonoBehaviour
 
     int isRunningHash;
 
+    int velocityHash;
+
+    float velocity = 0f;
+
+    public float acceleration = 0.1f;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
+        velocityHash = Animator.StringToHash("Velocity");
     }
 
     // Update is called once per frame
@@ -23,17 +28,35 @@ public class AnimationStateController : MonoBehaviour
     void Update()
     {
         // current states
-        bool isWalking = animator.GetBool(isWalkingHash);
-        bool isRunning = animator.GetBool(isRunningHash);
-
+        // bool isWalking = animator.GetBool(isWalkingHash);
+        // bool isRunning = animator.GetBool(isRunningHash);
         // inputs
         bool forwardPressed = Input.GetKey("w");
         bool runPressed = Input.GetKey("left shift");
 
-        HandleCondition(isWalkingHash, !isWalking && forwardPressed, true);
-        HandleCondition(isWalkingHash, isWalking && !forwardPressed, false);
-        HandleCondition(isRunningHash, !isRunning && (forwardPressed && runPressed), true);
-        HandleCondition(isRunningHash, isRunning && (!forwardPressed || !runPressed), false);
+        if (forwardPressed && velocity < 1f)
+        {
+            velocity += Time.deltaTime * acceleration;
+        }
+        if (!forwardPressed && velocity > 0f)
+        {
+            velocity -= 5 * Time.deltaTime * acceleration;
+        }
+        if (velocity < 0f)
+        {
+            velocity = 0f;
+        }
+
+        animator.SetFloat (velocityHash, velocity);
+
+        // HandleCondition(isWalkingHash, !isWalking && forwardPressed, true);
+        // HandleCondition(isWalkingHash, isWalking && !forwardPressed, false);
+        // HandleCondition(isRunningHash,
+        // !isRunning && (forwardPressed && runPressed),
+        // true);
+        // HandleCondition(isRunningHash,
+        // isRunning && (!forwardPressed || !runPressed),
+        // false);
     }
 
     void HandleCondition(int stateHash, bool condition, bool newValue)
