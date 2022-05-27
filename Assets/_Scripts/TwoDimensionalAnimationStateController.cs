@@ -4,9 +4,9 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
 {
     Animator animator;
 
-    float velocityX = 0f;
+    public float velocityX = 0f;
 
-    float velocityZ = 0f;
+    public float velocityZ = 0f;
 
     int VelocityXHash;
 
