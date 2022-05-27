@@ -1188,8 +1188,8 @@ PositionConstraint:
   m_AffectTranslationX: 1
   m_AffectTranslationY: 1
   m_AffectTranslationZ: 1
-  m_IsContraintActive: 0
-  m_IsLocked: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 0
   m_Sources:
   - sourceTransform: {fileID: 543450651774927493}
     weight: 1
@@ -3240,7 +3240,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbde15929c49fe6458ebc8675559a7db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 100
+  velocityX: 0
+  velocityZ: 0
   animationScript: {fileID: 1378806510}
 --- !u!1001 &9031814627102129367
 PrefabInstance:
@@ -3311,7 +3312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9031814625795479100, guid: b4019dbb14804d449b55f21341af43d1, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4019dbb14804d449b55f21341af43d1, type: 3}
