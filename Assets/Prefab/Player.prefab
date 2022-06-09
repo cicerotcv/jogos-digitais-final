@@ -2203,6 +2203,7 @@ GameObject:
   - component: {fileID: 9031814625795479097}
   - component: {fileID: -1962215604401791302}
   - component: {fileID: 2794006881296802344}
+  - component: {fileID: 2383023246664635982}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2258,8 +2259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77bf2f8c9db53948ad9dbe2dc742cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocityX: 0
-  velocityZ: 0
+  velocityX: 1
+  velocityZ: 1
   maxWalkVelocity: 0.5
   maxRunVelocity: 2
   tolerance: 0.05
@@ -2294,6 +2295,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.78465086, y: 1.7266257, z: 0.8114433}
   m_Center: {x: -0.011406928, y: 0.8471472, z: 0.047578275}
+--- !u!114 &2383023246664635982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8184758361352758504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbde15929c49fe6458ebc8675559a7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 7.5
+  groundDrag: 10
+  jumpForce: 10
+  jumpCooldown: 1
+  airMultiplier: 5
+  jumpKey: 32
+  playerHeight: 0.1
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 1024
+  grounded: 1
 --- !u!1 &8237773181788030899
 GameObject:
   m_ObjectHideFlags: 0

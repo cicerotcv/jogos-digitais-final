@@ -6,11 +6,12 @@ using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    public float moveSpeed = 5.0f;
+    public float moveSpeed = 6f;
+    public float runningSpeed = 12f;
     public float groundDrag = 10.0f;
     public float jumpForce = 5.0f;
     public float jumpCooldown = 1.0f;
-    public float airMultiplier = 5.0f;
+    public float airMultiplier = 2.5f;
     private bool readyToJump;
 
     [Header("Keybinds")]
@@ -21,14 +22,16 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask whatIsGround;
     public bool grounded;
 
-    public Transform orientation;
+    [Header("Animation Script")]
+    public TwoDimensionalAnimationStateController animationScript;
 
-    float horizontalInput;
-    float verticalInput;
+    private float horizontalInput;
+    private float verticalInput;
+    private float velocityX;
+    private float velocityZ;
 
-    Vector3 moveDirection;
-
-    Rigidbody rb;
+    private Vector3 moveDirection;
+    private Rigidbody rb;
 
     private void Start()
     {
@@ -37,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
         readyToJump = true;
     }
+
     private void Update()
     {
         // ground check
@@ -44,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
         MyInput();
         SpeedControl();
+        // SyncSpeedWithAnimation();
 
         // handle drag
         if (grounded)
@@ -55,6 +60,13 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
+    }
+
+    // Funções Personalizadas de movimentação
+    void SyncSpeedWithAnimation()
+    {
+        velocityX = animationScript.velocityX;
+        velocityZ = animationScript.velocityZ;
     }
 
     private void MyInput()
@@ -76,15 +88,32 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         // calculate movement direction
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection = this.transform.forward * verticalInput + this.transform.right * horizontalInput;
 
         // on ground
         if(grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-
+        {
+            if (!Input.GetKey("left shift")) {
+                rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            }
+            else {
+                rb.AddForce(moveDirection.normalized * runningSpeed * 10f, ForceMode.Force);
+            }
+            
+        }
         // in air
         else if(!grounded)
+        {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+        }
+
+
+        // float scalingFactor = 2f;
+
+        // float vx = Time.deltaTime * velocityX * scalingFactor;
+        // float vz = Time.deltaTime * velocityZ * scalingFactor;
+
+        // transform.position += new Vector3(vx, 0, vz);
     }
 
     private void SpeedControl()
