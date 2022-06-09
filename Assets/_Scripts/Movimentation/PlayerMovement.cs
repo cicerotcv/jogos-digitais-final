@@ -6,12 +6,12 @@ using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    public float moveSpeed;
-    public float groundDrag;
-    public float jumpForce;
-    public float jumpCooldown;
-    public float airMultiplier;
-    bool readyToJump;
+    public float moveSpeed = 5.0f;
+    public float groundDrag = 10.0f;
+    public float jumpForce = 5.0f;
+    public float jumpCooldown = 1.0f;
+    public float airMultiplier = 5.0f;
+    private bool readyToJump;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
