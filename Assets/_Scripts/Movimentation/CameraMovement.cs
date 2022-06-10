@@ -7,7 +7,9 @@ public class CameraMovement : MonoBehaviour
 {
     public float sensX, sensY;
     public Transform orientation, modelRb;
-
+    public PlayerMovement player;
+    
+    public float maxWallRunCameraTilt, wallRunCameraTilt;
     private float xRotation, yRotation;
     
     private void Start()
