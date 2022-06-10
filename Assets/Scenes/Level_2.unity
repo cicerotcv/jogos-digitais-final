@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2108380263}
-  m_IndirectSpecularColor: {r: 0.37574038, g: 0.61439884, b: 0.86685586, a: 1}
+  m_IndirectSpecularColor: {r: 0.3757406, g: 0.6143992, b: 0.8668561, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2167,6 +2167,7 @@ GameObject:
   - component: {fileID: 689631584}
   - component: {fileID: 689631583}
   - component: {fileID: 689631582}
+  - component: {fileID: 689631585}
   m_Layer: 7
   m_Name: 'Player '
   m_TagString: Player
@@ -2186,17 +2187,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbde15929c49fe6458ebc8675559a7db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  walkSpeed: 7
+  runSpeed: 10
   groundDrag: 5
   jumpForce: 12
   jumpCooldown: 0.25
   airMultiplier: 0.4
   jumpKey: 32
+  runKey: 304
   playerHeight: 1.794698
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
   orientation: {fileID: 1511275809}
+  grounded: 0
+  state: 0
 --- !u!54 &689631583
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2229,6 +2234,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &689631585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689631581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db88ade16ecc73143b085b80085297de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 1511275809}
+  rb: {fileID: 689631583}
+  pm: {fileID: 689631582}
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 4096
+  climbSpeed: 10
+  maxClimbTime: 0.75
+  detectionLength: 0.7
+  sphereCastRadius: 0.25
+  maxWallLookAngle: 30
 --- !u!1 &724234989
 GameObject:
   m_ObjectHideFlags: 0
@@ -4423,7 +4451,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-136868
+  m_Name: pb_Mesh29642
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
