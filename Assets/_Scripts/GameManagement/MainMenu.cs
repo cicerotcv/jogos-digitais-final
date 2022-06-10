@@ -12,21 +12,11 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void PlayGame() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         gm._gameState = GameManager.GameState.PLAY;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void QuitGame() {
-        Debug.Log("Quit");
-        Application.Quit();
+        gm.QuitGame();
     }
-
-    // public void Start() {
-    //     gm = GameManager.GetInstance();
-    // }
-
-    // public void Update() {
-    //     gm._gameState = GameManager.GameState.MENU;
-    //     Cursor.lockState = CursorLockMode.None;
-    // }
 }
