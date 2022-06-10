@@ -23,9 +23,9 @@ public class Climbing : MonoBehaviour {
     public float sphereCastRadius = 0.25f;
     public float maxWallLookAngle = 30.0f;
     private float wallLookAngle;
-
     private RaycastHit frontWallHit;
     private bool wallFront;
+
 
     private void Update()
     {
