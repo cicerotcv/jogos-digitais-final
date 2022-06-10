@@ -15,7 +15,7 @@ public class GameManager {
 
     private GameManager() {
         _gameState = GameState.PLAY; // MUDAR PARA MENU!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        _startTime = 60;
+        _startTime = 999;
     }
 
     public static GameManager GetInstance() {
