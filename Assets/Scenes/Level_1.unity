@@ -5795,6 +5795,7 @@ MonoBehaviour:
   walkSpeed: 7
   runSpeed: 10
   groundDrag: 5
+  climbSpeed: 0
   jumpForce: 12
   jumpCooldown: 0.25
   airMultiplier: 0.4
@@ -5806,7 +5807,9 @@ MonoBehaviour:
     m_Bits: 1024
   orientation: {fileID: 1962784905}
   grounded: 0
+  climbingScript: {fileID: 1884366176}
   state: 0
+  climbing: 0
 --- !u!54 &1884366174
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5857,11 +5860,18 @@ MonoBehaviour:
   whatIsWall:
     serializedVersion: 2
     m_Bits: 4096
-  climbSpeed: 10
+  climbSpeed: 3
   maxClimbTime: 0.75
+  climbJumpUpForce: 14
+  climbJumpBackForce: 12
+  jumpKey: 32
+  climbJumps: 1
   detectionLength: 0.7
   sphereCastRadius: 0.25
   maxWallLookAngle: 30
+  minWallNormalAngleChange: 5
+  exitingWall: 0
+  exitWallTime: 0.2
 --- !u!1 &1952685660
 GameObject:
   m_ObjectHideFlags: 0

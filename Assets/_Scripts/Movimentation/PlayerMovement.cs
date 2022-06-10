@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float walkSpeed = 7.0f;
     public float runSpeed = 10.0f;
     public float groundDrag = 5.0f;
-
+    public float climbSpeed;    
     public float jumpForce = 12.0f;
     public float jumpCooldown = 0.25f;
     public float airMultiplier = 0.4f;
@@ -31,13 +31,17 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection;
     private Rigidbody rb;
 
+    [Header("References")]
+    public Climbing climbingScript;
     public PlayerState state;
     public enum PlayerState {
         Walking,
         Running,
-        Jumping
+        Jumping,
+        climbing
     }
 
+    public bool climbing;
     private void Start() {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
@@ -77,18 +81,25 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void StateHandler() {
+
         if (grounded && Input.GetKey(runKey)) {
             state = PlayerState.Running;
             moveSpeed = runSpeed;
         } else if (grounded) {
             state = PlayerState.Walking;
             moveSpeed = walkSpeed;
-        } else {
+        } else if (climbing) {
+            state = PlayerState.climbing;
+            moveSpeed = climbSpeed;
+        } 
+        else {
             state = PlayerState.Jumping;
         }
     }
 
     private void MovePlayer() {
+        if (climbingScript.exitingWall) return;
+        
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         if(grounded) {
