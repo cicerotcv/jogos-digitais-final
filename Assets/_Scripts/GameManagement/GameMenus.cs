@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 
-public class PauseMenu : MonoBehaviour {
+public class GameMenus : MonoBehaviour {
 
     public GameObject pauseMenuUI, optionsMenuUI;
     private GameManager gm;
@@ -21,23 +21,35 @@ public class PauseMenu : MonoBehaviour {
                 Resume();
             }
         }
-    }
 
-    public void Resume() {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        pauseMenuUI.SetActive(false);
-        optionsMenuUI.SetActive(false);
-        Time.timeScale = 1f;
-        gm._gameState = GameManager.GameState.PLAY;
+        if (gm._gameState == GameManager.GameState.ENDGAME) {
+            GameOver();
+        }
     }
 
     public void Pause() {
+        gm._gameState = GameManager.GameState.PAUSE;
+        Time.timeScale = 0f;
+
+        pauseMenuUI.SetActive(true);
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
-        gm._gameState = GameManager.GameState.PAUSE;
+    }
+
+    public void Resume() {
+        gm._gameState = GameManager.GameState.PLAY;
+        Time.timeScale = 1f;
+
+        pauseMenuUI.SetActive(false);
+        optionsMenuUI.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false; 
+    }
+
+    public void GameOver() {
+        SceneManager.LoadScene("GameOver");
     }
 
     public void Menu() {
@@ -46,7 +58,6 @@ public class PauseMenu : MonoBehaviour {
     }
 
     public void QuitGame() {
-        Debug.Log("Quit");
-        Application.Quit();
+        gm.QuitGame();
     }
 }

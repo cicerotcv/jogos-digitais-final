@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager {
 
     private static GameManager _instance;
     
-    public enum GameState {MENU, PAUSE, PLAY, ENDGAME};
+    public enum GameState {PLAY, PAUSE, MENU, ENDGAME};
     public GameState _gameState;
 
+    public int _startTime { get; private set; }
+    public int _runningTime;
+
     private GameManager() {
-        _gameState = GameState.MENU;
+        _gameState = GameState.PLAY; // MUDAR PARA MENU!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        _startTime = 60;
     }
 
     public static GameManager GetInstance() {
@@ -18,5 +23,12 @@ public class GameManager {
             _instance = new GameManager();
         }
         return _instance;
+    }
+
+
+    // Menu Funcitions
+    public void QuitGame() {
+        Debug.Log("Quit");
+        Application.Quit();
     }
 }
