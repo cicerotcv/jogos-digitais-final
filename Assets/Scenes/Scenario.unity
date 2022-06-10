@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -187,18 +187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27df2f86bef9fae448c668169322e29f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
-  groundDrag: 5
-  jumpForce: 12
-  jumpCooldown: 0.25
-  airMultiplier: 0.4
-  jumpKey: 32
-  playerHeight: 2
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 1024
-  grounded: 0
-  orientation: {fileID: 927567183}
 --- !u!114 &639682026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,10 +549,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1127436306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7d2b4f051b966149bf10f62b5fc8dd1, type: 3}
+  m_Script: {fileID: 11500000, guid: 87c24a09193b5fb49aa9671c0aae606c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPosition: {fileID: 1924385363}
+  sensX: 100
+  sensY: 100
+  cameraPosition: {fileID: 0}
+  player: {fileID: 0}
 --- !u!4 &1127436308
 Transform:
   m_ObjectHideFlags: 0
@@ -774,7 +765,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensX: 600
   sensY: 600
-  orientation: {fileID: 927567183}
+  cameraPosition: {fileID: 1127436308}
+  player: {fileID: 639682024}
 --- !u!1 &1924385362
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,7 +826,7 @@ TerrainCollider:
   m_GameObject: {fileID: 1947750516}
   m_Material: {fileID: 0}
   m_Enabled: 1
-  m_TerrainData: {fileID: 15600000, guid: 850008c5797753642a4544f671847d3f, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 41c771933b074df4080ab0eda3413b74, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &1947750518
 Terrain:
@@ -845,7 +837,7 @@ Terrain:
   m_GameObject: {fileID: 1947750516}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: 850008c5797753642a4544f671847d3f, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 41c771933b074df4080ab0eda3413b74, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5

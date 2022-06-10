@@ -6,10 +6,10 @@ using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    public float moveSpeed = 6f;
+    public float moveSpeed = 7.5f;
     public float runningSpeed = 12f;
     public float groundDrag = 10.0f;
-    public float jumpForce = 5.0f;
+    public float jumpForce = 10.0f;
     public float jumpCooldown = 1.0f;
     public float airMultiplier = 2.5f;
     private bool readyToJump;
@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode jumpKey = KeyCode.Space;
 
     [Header("Ground Check")]
-    public float playerHeight;
+    public float playerHeight = 0.44f;
     public LayerMask whatIsGround;
     public bool grounded;
 
@@ -27,8 +27,8 @@ public class PlayerMovement : MonoBehaviour
 
     private float horizontalInput;
     private float verticalInput;
-    private float velocityX;
-    private float velocityZ;
+    // private float velocityX;
+    // private float velocityZ;
 
     private Vector3 moveDirection;
     private Rigidbody rb;
@@ -44,7 +44,9 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
+        grounded = Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
+        // draw raycast
+        // Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.down * (playerHeight * 0.5f + 0.3f), Color.red);
 
         MyInput();
         SpeedControl();
@@ -63,11 +65,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Funções Personalizadas de movimentação
-    void SyncSpeedWithAnimation()
-    {
-        velocityX = animationScript.velocityX;
-        velocityZ = animationScript.velocityZ;
-    }
+    // void SyncSpeedWithAnimation()
+    // {
+    //     velocityX = animationScript.velocityX;
+    //     velocityZ = animationScript.velocityZ;
+    // }
 
     private void MyInput()
     {
