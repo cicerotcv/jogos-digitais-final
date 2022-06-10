@@ -30,7 +30,6 @@ public class Climbing : MonoBehaviour
     public float sphereCastRadius;
     public float maxWallLookAngle;
     private float wallLookAngle;
-
     private RaycastHit frontWallHit;
     private bool wallFront;
 
@@ -88,9 +87,9 @@ public class Climbing : MonoBehaviour
 
         // bool newWall = frontWallHit.transform != lastWall || Mathf.Abs(Vector3.Angle(lastWallNormal, frontWallHit.normal)) > minWallNormalAngleChange;
 
-        // if (pm.grounded) {
-        //     climbTimer = maxClimbTime;
-        // }
+        if (pm.grounded) {
+            climbTimer = maxClimbTime;
+        }
         // if ((wallFront && newWall) || pm.grounded)
         // {
         //     climbTimer = maxClimbTime;

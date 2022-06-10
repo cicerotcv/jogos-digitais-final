@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 315677998}
-  m_IndirectSpecularColor: {r: 0.37574038, g: 0.61439884, b: 0.86685586, a: 1}
+  m_IndirectSpecularColor: {r: 0.3757406, g: 0.6143992, b: 0.8668561, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2400,7 +2400,7 @@ GameObject:
   - component: {fileID: 842725968}
   - component: {fileID: 842725967}
   - component: {fileID: 842725966}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Obstacles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5772,6 +5772,7 @@ GameObject:
   - component: {fileID: 1884366175}
   - component: {fileID: 1884366174}
   - component: {fileID: 1884366173}
+  - component: {fileID: 1884366176}
   m_Layer: 7
   m_Name: 'Player '
   m_TagString: Player
@@ -5791,17 +5792,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbde15929c49fe6458ebc8675559a7db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  walkSpeed: 7
+  runSpeed: 10
   groundDrag: 5
   jumpForce: 12
   jumpCooldown: 0.25
   airMultiplier: 0.4
   jumpKey: 32
+  runKey: 304
   playerHeight: 1.794698
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
   orientation: {fileID: 1962784905}
+  grounded: 0
+  state: 0
 --- !u!54 &1884366174
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5834,6 +5839,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1884366176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884366172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db88ade16ecc73143b085b80085297de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 1962784905}
+  rb: {fileID: 1884366174}
+  pm: {fileID: 1884366173}
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 4096
+  climbSpeed: 10
+  maxClimbTime: 0.75
+  detectionLength: 0.7
+  sphereCastRadius: 0.25
+  maxWallLookAngle: 30
 --- !u!1 &1952685660
 GameObject:
   m_ObjectHideFlags: 0
@@ -6039,7 +6067,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70300
+  m_Name: pb_Mesh25492
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

@@ -26,7 +26,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform orientation;
     
     private float horizontalInput, verticalInput;
-    private bool grounded, readyToJump;
+    public bool grounded;
+    private bool readyToJump;
     private Vector3 moveDirection;
     private Rigidbody rb;
 
